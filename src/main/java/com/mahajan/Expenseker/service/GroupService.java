@@ -102,7 +102,7 @@ public class GroupService {
 			
 			if( result >= 0.0){
 				
-				groupAmountSummary.add(min_key + " needs to pay "+ max_key+" : "+ result(Math.abs(min_value)));
+				groupAmountSummary.add(min_key + " needs  to pay "+ max_key+" : "+ result(Math.abs(min_value)));
 				
 				userTotalExpenses.remove(max_key);
 				userTotalExpenses.remove(min_key);

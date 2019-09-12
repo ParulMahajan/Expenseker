@@ -17,8 +17,7 @@ public class UserExpense {
 	@GeneratedValue
 	private int expenseId;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JsonIgnore
 	User user;
 	

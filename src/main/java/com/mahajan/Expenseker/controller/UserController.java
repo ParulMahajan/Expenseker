@@ -56,7 +56,7 @@ public class UserController {
 		return Response.status(200).entity(users).build();
 	}
 
-	@Path("/addExpense/{userId}")
+	@Path("/{userId}/addExpense")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -75,23 +75,6 @@ public class UserController {
 		return Response.status(200).entity(expenses).build();
 	}
 	
-	@Path("deleteUser/{id}")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteUser(@PathParam("id") int id){
-
-		userService.deleteUser(id);
-		return Response.status(200).entity(new RestCallResponse()).build();
-	}
-	
-	@Path("deleteExpense/{id}")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteExpense(@PathParam("id") int id){
-
-		userService.deleteExpense(id);
-		return Response.status(200).entity(new RestCallResponse()).build();
-	}
 	
 	@Path("getGroups/{id}")
 	@GET

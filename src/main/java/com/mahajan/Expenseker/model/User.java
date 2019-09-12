@@ -24,11 +24,11 @@ public class User {
 	private String email;
 	private String mobile;
 
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<GroupUsers> groupUsers;
 
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<UserExpense> userExpenses;
 

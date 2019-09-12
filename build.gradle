@@ -16,7 +16,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 
 group = 'com.mahajan'
-version = '0.0.1-SNAPSHOT'
+version = 'beta'
 sourceCompatibility = 1.8
 
 repositories {

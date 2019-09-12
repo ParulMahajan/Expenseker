@@ -5,10 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
-
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.mahajan.Expenseker.model.Group;
@@ -22,15 +20,13 @@ import com.mahajan.Expenseker.repository.UserRepository;
 public class UserService {
 
 	@Autowired
+	JdbcTemplate jdbcTemplate;
+
+	@Autowired
 	UserRepository userRepository;
 	
 	@Autowired
 	UserExpenseRepository userExpenseRepository;
-	
-	@Autowired
-	EntityManager em;
-	
-	
 
 	public void addUser(User user) {
 		userRepository.save(user);
@@ -46,8 +42,8 @@ public class UserService {
 	}
 
 	public List<Group> getGroupsForUser(int id){
-		User u   = userRepository.findOne(id);
-		  Set<GroupUsers> userGroupsUsers = u.getGroupUsers();
+		  Set<GroupUsers> userGroupsUsers = userRepository.findOne(id).getGroupUsers();
+		  
 		  List<Group> groupList = new ArrayList<Group>();
 		  Iterator<GroupUsers> groupUsersIterator = userGroupsUsers.iterator();
 		  while(groupUsersIterator.hasNext()){
@@ -58,28 +54,12 @@ public class UserService {
 
 	public void addExpense(int userId, UserExpense expense) {
 		
-		User u = em.getReference(User.class, userId);
-		expense.setUser(u);
-		userExpenseRepository.save(expense);
+		String query = "INSERT INTO USER_EXPENSE VALUES (HIBERNATE_SEQUENCE.nextval,"+expense.getAmount()+",'"+expense.getDescription()+"',"+userId+")";
+		jdbcTemplate.execute(query);
 	}
 
 	public Set<UserExpense> getExpenses(int userId) {
 		// TODO Auto-generated method stub
 		return userRepository.findOne(userId).getUserExpenses();
-	}
-
-	public void deleteUser(int id) {
-		userRepository.delete(id);
-		
-	}
-
-	public void deleteExpense(int id) {
-		UserExpense uE = new UserExpense();
-		uE.setExpenseId(id);
-		userExpenseRepository.delete(uE);
-//		sf = em.unwrap(SessionFactory.class);
-//		sf.getCurrentSession().delete(uE);
-
-		
 	}
 }

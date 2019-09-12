@@ -24,16 +24,16 @@ public class GroupUsers  {
 	@JsonIgnore
 	private int groupUsersId;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "userId")  
 	private User user;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "groupId") 
 	@JsonIgnore
 	private Group group;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="groupUsers") 
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="groupUsers") 
 	private Set<GroupUsersExpense> groupUsersExpense;
 
 	@Column(nullable=true)

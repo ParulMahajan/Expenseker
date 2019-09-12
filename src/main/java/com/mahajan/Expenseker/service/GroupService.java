@@ -9,16 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.mahajan.Expenseker.model.Group;
 import com.mahajan.Expenseker.model.GroupUsers;
-import com.mahajan.Expenseker.model.User;
 import com.mahajan.Expenseker.repository.GroupRepository;
 import com.mahajan.Expenseker.repository.GroupUsersRepository;
 
@@ -31,10 +27,7 @@ public class GroupService {
 	GroupRepository groupRepository;
 
 	@Autowired
-	EntityManager em;
-		
-	@Autowired
-	DataSource source;
+	JdbcTemplate jdbcTemaplte;
 
 	@Autowired
 	GroupUsersRepository groupUsersRepository;
@@ -53,13 +46,8 @@ public class GroupService {
 
 	public void addUser(int groupId, int userId) {
 
-		User u = em.getReference(User.class, userId);
-		Group g = em.getReference(Group.class, groupId);
-		
-		GroupUsers gU = new GroupUsers();
-		gU.setUser(u);gU.setGroup(g);
-		
-		groupUsersRepository.save(gU);
+		String addUserToGroup = "Insert into Group_users (GROUP_USERS_ID,GROUP_ID,USER_ID) values (HIBERNATE_SEQUENCE.nextval,"+groupId+","+userId+")";
+		jdbcTemaplte.execute(addUserToGroup);
 	}
 
 	public List<String>  getSummary(int groupId) {

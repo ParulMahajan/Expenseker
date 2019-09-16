@@ -21,6 +21,7 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	
 }
 
 configurations {
@@ -28,11 +29,13 @@ configurations {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-jersey')
-	compile('org.springframework.boot:spring-boot-starter-web')
-compile('org.glassfish.jersey.media:jersey-media-moxy')
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-jersey')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	//implementation('oracle:ojdbc6')
+  //	compile 'com.oracle.jdbc:ojdbc7:12.1.0.2'
+  //  compile('org.glassfish.jersey.media:jersey-media-moxy')
 	
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+//	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

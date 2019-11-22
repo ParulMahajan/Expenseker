@@ -34,6 +34,7 @@ public class UserController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(User user){
 		System.out.println(user);
+		
 		userService.addUser(user);
 		return Response.status(201).entity(new RestCallResponse("User")).build();
 	}
@@ -83,5 +84,9 @@ public class UserController {
 
 		List<Group> userGroups =	userService.getGroupsForUser(id);
 		return Response.status(200).entity(userGroups).build();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("aspsd".substring(0, 3));
 	}
 }

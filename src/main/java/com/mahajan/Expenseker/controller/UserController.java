@@ -34,6 +34,7 @@ public class UserController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(User user){
 		System.out.println(user);
+		System.out.println(user);
 		
 		userService.addUser(user);
 		return Response.status(201).entity(new RestCallResponse("User")).build();

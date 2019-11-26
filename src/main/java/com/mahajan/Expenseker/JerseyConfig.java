@@ -10,7 +10,8 @@ public class JerseyConfig extends ResourceConfig{
 
 	
 	public JerseyConfig() {
-		 packages("com.mahajan.Expenseker.controller");
-	//	register(UserController.class);
+		// packages("com.mahajan.Expenseker.controller");
+		register(com.mahajan.Expenseker.controller.UserController.class);
+		register(com.mahajan.Expenseker.controller.GroupController.class);
 	}
 }

@@ -25,9 +25,10 @@ repositories {
 }
 
 bootJar {
-    manifest {
-        attributes 'Main-Class': 'com.mahajan.Expenseker.ExpensekerApplication'
-    }
+ //   manifest {
+ //       attributes 'Main-Class': 'com.mahajan.Expenseker.ExpensekerApplication'
+//    }
+    mainClassName = 'com.mahajan.Expenseker.ExpensekerApplication'
     baseName = project.name + '-mahajan'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
          //  configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) }

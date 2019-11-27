@@ -39,8 +39,8 @@ public class GroupService {
 	}
 
 	public Group getGroup(int id){
-		Group group =	groupRepository.findOne(id);
-
+	//	Group group =	groupRepository.findOne(id);
+		Group group =	groupRepository.findById(id).get();
 		return group;
 	}
 
@@ -54,7 +54,7 @@ public class GroupService {
 
 		groupAmountSummary = new ArrayList<String>();
 		
-		Group group = groupRepository.findOne(groupId);
+		Group group = groupRepository.findById(groupId).get();
 
 		Set<GroupUsers> groupUsers = group.getGroupUsers();
          int totalUsersinGroup = groupUsers.size();

@@ -33,7 +33,7 @@ public class UserService {
 	}
 
 	public User getUser(int userId){
-		return userRepository.findOne(userId);
+		return userRepository.findById(userId).get();
 	}
 
 	public List<User> getAllUsers(){
@@ -42,7 +42,7 @@ public class UserService {
 	}
 
 	public List<Group> getGroupsForUser(int id){
-		  Set<GroupUsers> userGroupsUsers = userRepository.findOne(id).getGroupUsers();
+		  Set<GroupUsers> userGroupsUsers = userRepository.findById(id).get().getGroupUsers();
 		  
 		  List<Group> groupList = new ArrayList<Group>();
 		  Iterator<GroupUsers> groupUsersIterator = userGroupsUsers.iterator();
@@ -60,6 +60,6 @@ public class UserService {
 
 	public Set<UserExpense> getExpenses(int userId) {
 		// TODO Auto-generated method stub
-		return userRepository.findOne(userId).getUserExpenses();
+		return userRepository.findById(userId).get().getUserExpenses();
 	}
 }

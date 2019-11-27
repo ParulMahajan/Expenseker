@@ -1,6 +1,7 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.9.RELEASE'
+	//	springBootVersion = '1.5.9.RELEASE'
+		springBootVersion = '2.0.1.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -13,10 +14,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
-//apply plugin: 'war'
-
-//sgroup = 'com.mahajan'
-//version = 'beta'
+apply plugin: 'io.spring.dependency-management'
 sourceCompatibility = 1.8
 
 repositories {
@@ -26,7 +24,7 @@ repositories {
    }
 }
 
-jar {
+bootJar {
     manifest {
         attributes 'Main-Class': 'com.mahajan.Expenseker.ExpensekerApplication'
     }
@@ -35,6 +33,8 @@ jar {
          //  configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) }
             }
 }
+
+
 
 configurations {
 	providedRuntime

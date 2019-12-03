@@ -8,5 +8,6 @@ public class ExpensekerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExpensekerApplication.class, args);
+		System.out.println("expenseker app started");
 	}
 }

@@ -3,3 +3,5 @@
   sudo chown -R 1000:1000 /opt/jenkins
  
  sudo docker run -u 0 -d -v /var/jenkins_home:/var/jenkins_home -p 9090:8080 -p 50000:50000 --name jenkins-srv jenkins/jenkins:lts
+ 
+ 
